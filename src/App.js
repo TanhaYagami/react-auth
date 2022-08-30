@@ -3,12 +3,17 @@ import SignUp from './pages/signUP/SignUp';
 import LogIn from './logIn/LogIn';
 import SharedLayout from './SharedLayout'
 import DashBoard from './pages/dashBoard/DashBoard';
+import User from './components/user/User'
 import ProtectedRoute from './ProtectedRoute';
+import Error from './pages/errorPage/Error'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react'
 
 import './App.css';
 
+
+export const UserListContext = React.createContext(null)
+export const UserInputContext = React.createContext(null)
 
 function App() {
   
@@ -31,28 +36,47 @@ function App() {
     localStorage.setItem("app-user-data", JSON.stringify(listFormData))
   })
 
+  
+
+  function changeHandler(event){
+    const {name, value} = event.target
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+  }
+
+
 
   return (
+    <UserListContext.Provider value={{listFormData, setListFormData, changeHandler}}>
+    <UserInputContext.Provider value={{formData}}>
+
     <div className="App">
+
       <BrowserRouter>
         <Routes>
             <Route path='/' element={<SharedLayout />}>
             <Route index element={<Home />} /> 
-              <Route path='signUp' element={<SignUp formData={formData} setFormData={setFormData}  setListFormData ={setListFormData}  />} />
-              <Route path='logIn' element={<LogIn listFormData={listFormData} />} />
+              <Route path='signUp' element={<SignUp />} />
+              <Route path='logIn' element={<LogIn  />} />
             
               <Route path='dashBoard' element={
                   <ProtectedRoute listFormData={listFormData}>
-                      <DashBoard listFormData={listFormData} />
+                      <DashBoard/>
+                     
                   </ProtectedRoute>
               } />
               
             </Route>
+            <Route path="dashBoard/user" element ={<User />} />
+            <Route path="errorPage" element={<Error />} />
         </Routes>
       </BrowserRouter>
       
-
     </div>
+    </UserInputContext.Provider>
+      </UserListContext.Provider>
   );
 }
 

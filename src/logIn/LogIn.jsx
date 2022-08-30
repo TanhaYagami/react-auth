@@ -1,8 +1,10 @@
-import React from 'react'
+import React,{useState,useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
-export default function LogIn({listFormData}) {
+import { UserListContext } from '../App'
 
+export default function LogIn() {
 
+    const {listFormData} = useContext(UserListContext)
     const navigate = useNavigate()
   
     const [logInput, setLogInput] =React.useState({

@@ -1,32 +1,27 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
+import { UserInputContext } from '../../App'
+import { UserListContext } from '../../App'
 
-export default function SignUp({ setListFormData}) {
+export default function SignUp() {
 
+  const {formData, setFormData}= React.useContext(UserInputContext)
+  const {setListFormData, changeHandler} = React.useContext(UserListContext)
+ 
 
-  const [username, setUsername]= React.useState('')
-  const [post, setPost]= React.useState('')
+ 
 
     const navigate = useNavigate()
 
     function submitHandler(event){
         event.preventDefault()
-        if(!username || !post) return;
-          setListFormData({username: username, post:post})
+        if(!formData.username || !formData.post) return;
+          setListFormData({username: formData.username, post:formData.post})
         navigate('/dashBoard')
-        console.log(username, post)
+      
     }
 
-    function changeHandler(event){
-        const {value} = event.target
-        setUsername(value)
-      }
-
-      function postChangeHandler(event){
-        const {value} = event.target
-        setPost(value)
-      }
-
+  
     
       
 
@@ -39,16 +34,16 @@ export default function SignUp({ setListFormData}) {
                 <input 
                 type="text"
                 placeholder='Username'
-                value={username}
+                value={formData.username}
                 name='username'
                 onChange={changeHandler}
                 />
                 <input 
                 type="text"
                 placeholder='Post'
-                value={post}
+                value={formData.post}
                 name='post'
-                onChange={postChangeHandler}
+                onChange={changeHandler}
                 />
                 <button className='btn'>Sign Up</button>
             </form>

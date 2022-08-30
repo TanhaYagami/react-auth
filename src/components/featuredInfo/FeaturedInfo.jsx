@@ -1,10 +1,15 @@
 import { FaArrowDown,FaArrowUp } from "react-icons/fa"
+import { UserListContext } from "../../App"
 import './featuredInfo.css'
-
+import React from 'react'
 export default function FeaturedInfo() {
+
+    const {listFormData} = React.useContext(UserListContext)
+
   return (
     <div className='featured'>
 
+        {listFormData.post === "admin" && 
         <div className="featuredItem">
             <span className="featuredTitle">Revenu</span>
             <div className="featuredMoneyContainer">
@@ -15,8 +20,9 @@ export default function FeaturedInfo() {
                 </span>
             </div>
             <span className="featuredSubTitle">Campared to Previous month</span>
-        </div>
-        
+        </div> }
+
+
         <div className="featuredItem">
             <span className="featuredTitle">Sales</span>
             <div className="featuredMoneyContainer">

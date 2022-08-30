@@ -1,0 +1,17 @@
+.errrorPage{
+    background-color: antiquewhite;
+    
+}
+h1{
+    font-weight: bold;
+}
+p{
+    font-weight: bold;
+    font-style: 16px;
+}
+
+.errorText{
+    font-style: 16px;
+    color: red;
+    text-align: center;
+}
