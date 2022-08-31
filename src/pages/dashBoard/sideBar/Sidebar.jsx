@@ -10,7 +10,8 @@ export default function Sidebar() {
 
 
     const {listFormData} = React.useContext(UserListContext)
-    const directLink = listFormData.post === "admin" || "manager"? "/dashBoard/user" : "/errorPage"; 
+    const directLink = listFormData.post === "admin" || "manager" ? "/dashBoard/user" : "/errorPage"
+
   return (
     <div className="sidebarContainer">
        <div className="sideBarWrapper">
