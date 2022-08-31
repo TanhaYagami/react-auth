@@ -5,7 +5,7 @@ import { UserListContext } from '../../App'
 
 export default function SignUp() {
 
-  const {formData, setFormData}= React.useContext(UserInputContext)
+  const {formData}= React.useContext(UserInputContext)
   const {setListFormData, changeHandler} = React.useContext(UserListContext)
  
 
